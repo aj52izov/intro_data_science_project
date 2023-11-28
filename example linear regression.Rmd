@@ -7,7 +7,7 @@ output: html_notebook
 
 ```{r}
 library(readr)
-data <- read_csv("https://raw.githubusercontent.com/opencampus-sh/einfuehrung-in-data-science-und-ml/main/house_pricing_data/house_pricing_train.csv")
+data <- read_csv("https://raw.githubusercontent.com/opencampus-sh/einfuehrung-in-data-science-und-ml/main/umsatzdaten_gekuerzt.csv")
 ```
 
 #### Teilen des Datensatzes in Trainings- Validierungs- und Testdatensatz
@@ -41,7 +41,7 @@ cat("Test dataset dimensions:", dim(test_data), "\n")
 ### Beispiel einer einfachen linearen Regression
 
 ```{r}
-  mod <- lm(price ~ sqft_lot15 + as.factor(condition), train_data)
+  mod <- lm(Umsatz ~ as.factor(Warengruppe), train_data)
   summary(mod)
 
 ```
@@ -53,7 +53,7 @@ cat("Test dataset dimensions:", dim(test_data), "\n")
 predicted_values <- predict(mod, newdata = validation_data)
 
 # Compare the predicted values with the actual values
-comparison <- data.frame(Actual = validation_data$price, Predicted = predicted_values)
+comparison <- data.frame(Actual = validation_data$Umsatz, Predicted = predicted_values)
 
 # Calculate the mean squared error (RMSE)
 rmse <- sqrt(mean((comparison$Actual - comparison$Predicted)^2))
