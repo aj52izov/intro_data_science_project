@@ -47,10 +47,6 @@ kiwo_umsatz_wetter_data$Day <- as.numeric(format(kiwo_umsatz_wetter_data$Datum, 
 kiwo_umsatz_wetter_data$Month <- factor(format(kiwo_umsatz_wetter_data$Datum, "%m"))
 kiwo_umsatz_wetter_data$DayOfWeek <- factor(format(kiwo_umsatz_wetter_data$Datum, "%u"))
 
-# delete Date column
-kiwo_umsatz_wetter_data$Datum <- NULL
-
-
 
 # IV- Data Transformation
 
