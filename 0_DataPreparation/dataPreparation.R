@@ -1,9 +1,6 @@
 # install needed libraries
-install.packages("mltools")
 
 library(readr)
-library(mltools)
-library(data.table)
 
 # I- Data Importing
 
@@ -61,18 +58,7 @@ kiwo_umsatz_wetter_data$Datum <- NULL
 kiwo_umsatz_wetter_data$Bewoelkung <- factor(kiwo_umsatz_wetter_data$Bewoelkung)
 kiwo_umsatz_wetter_data$Warengruppe <- factor(kiwo_umsatz_wetter_data$Warengruppe)
 
-# one hot encoding for Warengruppe, Month, DayOfWeek, and Bewoelkung since they are categorical variables
-kiwo_umsatz_wetter_data <- one_hot(as.data.table(kiwo_umsatz_wetter_data))
-
-
-
 # V store the resulting data frame in a csv file
 write.csv(kiwo_umsatz_wetter_data, "Data/kiwo_umsatz_wetter_data.csv", row.names = FALSE)
-
-
-
-
-
-
 
 

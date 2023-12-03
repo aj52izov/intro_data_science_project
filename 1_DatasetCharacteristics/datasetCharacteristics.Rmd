@@ -1,0 +1,64 @@
+```{r}
+# Install needed packages
+install.packages("mltools")
+install.packages("readr")
+install.packages("ggplot2")
+install.packages("corrplot")
+```
+
+```{r}
+# Load needed libraries
+library(readr)
+library(mltools)
+library(data.table)
+library(ggplot2)# 
+library(corrplot)
+```
+
+```{r}
+# I- Data Importing
+data <- read_csv("../Data/kiwo_umsatz_wetter_data.csv")
+data$Warengruppe <- factor(data$Warengruppe)
+data$Month <- factor(data$Month)
+data$DayOfWeek <- factor(data$DayOfWeek)
+data$Bewoelkung <- factor(data$Bewoelkung)
+head(data)
+```
+
+```{r}
+# Display summary statistics for numeric variables
+summary(data)
+```
+
+```{r}
+# Create a bar plot to show the frequency of each Warengruppe
+barplot(table(data$Warengruppe), main = "Frequency of Warengruppe", col = "skyblue")
+```
+
+```{r}
+# plot a pairwise auto correlation plot for "Umsatz", "Temperatur", and "Windgeschwindigkeit"
+
+# Compute pairwise correlations
+cor_matrix <- cor(data[, c("Umsatz", "Temperatur", "Windgeschwindigkeit")])
+
+# Create a heatmap of the correlation matrix
+corrplot(cor_matrix)
+```
+
+```{r}
+# fro each Warengruppe, create a line plot to show relationship between "Umsatz" and "Temperatur"
+ggplot(data, aes(x = Temperatur)) + geom_line(aes(y = Umsatz, color = Warengruppe))
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+
+```
